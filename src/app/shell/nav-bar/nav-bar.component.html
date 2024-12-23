@@ -1,0 +1,29 @@
+
+<ng-container>
+    <div class="flex rounded-lg w-full  bg-[url('assets/images/gopi.JPG')] bg-no-repeat bg-cover">
+        <div  class="flex justify-center md:rounded-ld overflow-hidden md:px-10 py-5 bg-blur backdrop-filter backdrop-blur-md w-full gap-2 md:gap-10">
+            <div class="">
+                <img src="assets/images/gopi.JPG" alt="" class="object-cover border-4 border-white rounded-full shadow-md" height="120" width="120">
+            </div>
+            <div class="flex md:flex-1 flex-col justify-center gap-4">
+                <div class="flex md:flex-1 flex-col justify-center gap-4">
+                    <div class="text-3xl text-white flex flex-col font-bold text-highlight ">
+                        GovindaRaj DS
+                        <div class="text-sm font-thin flex cursor-pointer mt-2" >
+                            <div (click)="gitHub()" class="mr-6">
+                                <img src="assets/images/github-logo.png" class="h-6 w-6"/>
+                            </div>
+                            <div (click)="instagram()" class="mr-6">
+                                <img src="assets/images/instagram-logo.png" class="h-6 w-6"/>
+                            </div>
+                            <div (click)="linkedIn()">
+                                <img src="assets/images/linkedin.png" class="h-6 w-6"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    </ng-container>

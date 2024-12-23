@@ -1,0 +1,21 @@
+/* Fix the navigation bar at the top */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure it's on top of other elements */
+    background-color: white; /* Optional: to add background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: shadow effect */
+}
+
+/* Push the content down to avoid overlap with the fixed header */
+ng-container {
+    margin-top: 80px; /* Adjust this based on the height of your header */
+}
+
+/* Ensure app-content does not go behind the header */
+app-content {
+    padding-top: 60px; /* Add padding to the top of app-content to account for header height */
+}
+

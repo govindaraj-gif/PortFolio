@@ -1,0 +1,33 @@
+<!-- <div class="container">
+    <div class="sudoku-container">
+        <h1>Sudoku Game</h1>
+        <table id="sudoku-board">
+            <tbody>
+                <tr *ngFor="let row of board; let i = index">
+                    <td *ngFor="let cell of row; let j = index">
+                        <ng-container *ngIf="cell !== 0">
+                            {{ cell }}
+                        </ng-container>
+                        <ng-container *ngIf="cell === 0">
+                            <input 
+                                type="text" 
+                                [(ngModel)]="board[i][j]" 
+                                maxlength="1" 
+                                [min]="1" 
+                                [max]="9"
+                                (input)="validateInput($event, i, j)" 
+                            />
+                        </ng-container>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button (click)="checkSolution()">Check Solution</button>
+        <div [ngClass]="{ 'bg-green': valid, 'bg-red': !valid }">
+            {{ message }}
+        </div>
+    </div>
+</div> -->
+<h1 class="text-6xl">
+    Pending...
+</h1>
