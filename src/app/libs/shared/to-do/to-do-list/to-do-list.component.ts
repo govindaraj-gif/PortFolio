@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class ToDoListComponent implements OnInit{
   statuses !: Status[];
   @Input() todoList !: ToDO[] ;
+  key = 'toDoList';
 
   constructor(public dialog: MatDialog) {}
 
@@ -19,6 +20,9 @@ export class ToDoListComponent implements OnInit{
       data:data,
       height:'25%',
       width:'60%'
+    }).afterClosed().subscribe(() => {
+      const data = localStorage.getItem(this.key);
+      if(data) this.todoList = JSON.parse(data);
     });
   }
   
@@ -28,11 +32,11 @@ export class ToDoListComponent implements OnInit{
 
   delete(row:ToDO,i:number){
     this.todoList = this.todoList.filter((_:ToDO , index:number) => index != i);
-    localStorage.setItem('todoList',JSON.stringify(this.todoList));
+    localStorage.setItem(this.key,JSON.stringify(this.todoList));
   }
 
   edit(row:ToDO,i:number){
-    this.openDialog(row);
+    this.openDialog({row ,i});
   }
 
 }

@@ -10,36 +10,41 @@ import { ToDO } from '../to-do-list/data';
 export class ToDoEditComponent implements OnInit {
   row : any;
   todoList!:ToDO[];
+  key = 'toDoList';
   @ViewChild('item') item !: ElementRef;
+  
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
   public dialog: MatDialogRef<ToDoEditComponent>){
     
   }
 
   ngOnInit(): void {
-      this.row = this.data;
-      const todoList = localStorage.getItem('toDoList');
+      this.row = this.data.row;
+      const todoList = localStorage.getItem(this.key);
       if(todoList) {
         this.todoList = JSON.parse(todoList);
       }
   }
 
-  cancel(){
+  close(){
     this.dialog.close();
   }
 
   save(){
-    const value = this.item.nativeElement.value;
+    var value = this.item.nativeElement.value;
     if(value == '') return;
-    const todo = {
-      item:value,
-      statusid:1
-    }
-    const data = localStorage.getItem('toDoList');
+
+    const data = localStorage.getItem(this.key);
     if(data) {
       this.todoList = JSON.parse(data);
+
+      this.todoList.map((v,i) => {
+        if(i == this.data.i){
+          v.item = value
+        }
+      })
     }
-    this.todoList.push(todo);
-    localStorage.setItem('toDoList',JSON.stringify(this.todoList));
+    localStorage.setItem(this.key,JSON.stringify(this.todoList));
+    this.close()
   }
 }

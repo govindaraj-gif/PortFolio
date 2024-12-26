@@ -12,11 +12,12 @@ import { toArray } from 'rxjs';
 export class ToDoComponent {
   @ViewChild('todo') toDo !: ElementRef;
   todoList !: ToDO[];
+  key = 'toDoList';
   constructor(){}
 
   ngOnInit(){
-    localStorage.setItem('toDoList',JSON.stringify(data));
-    const todoList = localStorage.getItem('toDoList');
+    localStorage.setItem(this.key,JSON.stringify(data));
+    const todoList = localStorage.getItem(this.key);
     if(todoList) {
       this.todoList = JSON.parse(todoList);
     }
@@ -29,12 +30,12 @@ export class ToDoComponent {
       item:value,
       statusid:1
     }
-    const data = localStorage.getItem('toDoList');
+    const data = localStorage.getItem(this.key);
     if(data) {
       this.todoList = JSON.parse(data);
+      this.todoList.push(todo)
     }
-    this.todoList.push(todo);
-    localStorage.setItem('toDoList',JSON.stringify(this.todoList));
+    localStorage.setItem(this.key,JSON.stringify(this.todoList));
   }
 
   // @HostListener('window:beforeunload',['$event'])
