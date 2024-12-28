@@ -1,12 +1,6 @@
-#sudoku-board {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-  }
-  
   #sudoku-board td {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border: 1px solid #ccc;
     text-align: center;
   }
@@ -19,10 +13,23 @@
   }
   
   .bg-green {
-    color: green;
+    background: green;
   }
   
   .bg-red {
-    color: red;
+    background: red;
   }
-  
+
+  .submit{
+    background: #3b71ca !important;
+    color: white !important;
+}
+
+@media only screen and (max-width: 600px) {
+  #sudoku-board td {
+    width: 30px;
+    height: 29px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+}

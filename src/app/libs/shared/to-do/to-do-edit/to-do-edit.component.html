@@ -1,10 +1,12 @@
-<h1 class="text-center text-3xl mt-4">Are you sure you want Edit?</h1>
-<div>
-    <div class="flex justify-center">
-        <input #item type="text" name="" id="" placeholder="Edit..." class="h-14" [value]="row.item" autofocus>
-    </div>
-    <div class="flex justify-center mt-10">
-        <button mat-raised-button class="cancel mt mr-7" (click)="close()">Cancel</button>
-        <button mat-raised-button class="save mt" (click)="save()">Save</button>
+<div class="mobile">
+    <h1 class="text-center text-3xl mt-4">Are you sure you want Edit?</h1>
+    <div class="">
+        <div class="flex justify-center mt-5">
+            <input #item type="text" name="" id="" placeholder="Edit..." class="h-14" [value]="row.item" autofocus>
+        </div>
+        <div class="flex justify-center mt-20">
+            <button mat-raised-button class="cancel mt mr-7" (click)="close()">Cancel</button>
+            <button mat-raised-button class="save mt" (click)="save()">Save</button>
+        </div>
     </div>
 </div>

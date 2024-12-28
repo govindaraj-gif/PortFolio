@@ -8,104 +8,40 @@ import { boards } from './board';
 })
 export class SudokoComponent implements OnInit{
   boards = boards[0];
-  currentBoard:any;
   message = '';
   valid!:boolean;
 
-  board: number[][] = [
-    [5, 3, 0, 0, 7, 0, 0, 0, 0],
-    [6, 0, 0, 1, 9, 5, 0, 0, 0],
-    [0, 9, 8, 0, 0, 0, 0, 6, 0],
-    [8, 0, 0, 0, 6, 0, 0, 0, 3],
-    [4, 0, 0, 8, 0, 3, 0, 0, 1],
-    [7, 0, 0, 0, 2, 0, 0, 0, 6],
-    [0, 6, 0, 0, 0, 0, 2, 8, 0],
-    [0, 0, 0, 4, 1, 9, 0, 0, 5],
-    [0, 0, 0, 0, 8, 0, 0, 7, 9],
+  board = [
+    [0, 3, 0, 6, 0, 8, 9, 0, 0],
+    [6, 0, 2, 0, 9, 5, 0, 4, 8],
+    [1, 9, 8, 0, 0, 0, 5, 6, 7],
+    [8, 5, 9, 7, 6, 1, 4, 0, 3],
+    [4, 2, 6, 8, 5, 3, 7, 9, 1],
+    [7, 1, 3, 9, 2, 4, 8, 5, 6],
+    [9, 6, 1, 0, 3, 7, 2, 8, 4],
+    [2, 8, 7, 4, 1, 9, 6, 3, 5],
+    [3, 0, 5, 2, 8, 6, 1, 7, 0]
   ];
-  
-  
+  currentBoard = JSON.parse(JSON.stringify(this.board));
   constructor(){
 
   }
 
   ngOnInit(){
-    const num = this.getRandomNumber();
-    this.currentBoard = this.boards[0]; 
-    this.createBoard(this.currentBoard);
+    // const num = this.getRandomNumber(); 
   }
 
   validateInput(event: any, i: number, j: number): void {
     const inputValue = Number(event.target.value);
-    if (inputValue >= 1 && inputValue <= 9) {
-      this.currentBoard[i][j] = inputValue;
-    } else if (!inputValue) {
-      this.currentBoard[i][j] = 0; // Allow clearing the cell
-    } else {
-      // Invalid input, reset the value
-      event.target.value = "";
-    }
+    this.currentBoard[i][j] = inputValue;
   }
-
-
 
   getRandomNumber() {
     return Math.floor(Math.random() * 10) + 1;
   }
 
-  createBoard(board:any) {
-  const boardContainer = document.querySelector("#sudoku-board tbody");
-
-  board.forEach((row:any, i:any) => {
-  const rowElement = document.createElement("tr");
-  row.forEach((value:any, j:any) => {
-      const cellElement = document.createElement("td");
-      
-      if (value !== 0) {
-      cellElement.textContent = value;
-      } else {
-      const inputElement = document.createElement("input");
-      inputElement.type = "text";
-      inputElement.min = String(1);
-      inputElement.max = String(9);
-      inputElement.maxLength = 1; // Limit input to 1 character (digit)
-      
-      // Validate the input when it changes
-      inputElement.addEventListener("input", () => {
-          const inputValue = Number(inputElement.value);
-          
-          // Check if the input is a number between 1 and 9
-          if (inputValue >= 1 && inputValue <= 9) {
-          // Valid input, update the board
-            board[i][j] = Number(inputValue);
-          } else if (!inputValue) {
-          // Allow clearing the cell
-            board[i][j] = 0;
-          } else {
-          // Invalid input, clear the input field
-          inputElement.value = "";
-          }
-      });
-      
-      cellElement.appendChild(inputElement);
-      }
-
-      rowElement.appendChild(cellElement);
-  });
-  boardContainer?.appendChild(rowElement);
-  });
-
-  }
-
   checkSolution() {
     this.valid = this.isValidSudoku(this.currentBoard);
-    
-
-    if (this.valid) {
-      this.message = "Congratulations! You solved the puzzle!";
-    } else {
-      this.message = "Oops! Some numbers are incorrect. Try again.";
-    }
   }
 
   isValidSudoku(currentBoard:any) {
@@ -116,7 +52,7 @@ export class SudokoComponent implements OnInit{
         for (let j = 0; j < 9; j++) {
             if (currentBoard[i][j] !== '.') {
                 if (s.has(currentBoard[i][j])) {
-                    return false; // Duplicate value in the row
+                    return false;
                 }
                 s.add(currentBoard[i][j]);
             }
@@ -129,7 +65,7 @@ export class SudokoComponent implements OnInit{
         for (let j = 0; j < 9; j++) {
             if (currentBoard[j][i] !== '.') {
                 if (s.has(currentBoard[j][i])) {
-                    return false; // Duplicate value in the column
+                    return false;
                 }
                 s.add(currentBoard[j][i]);
             }
@@ -139,7 +75,6 @@ export class SudokoComponent implements OnInit{
     // Validate 3x3 subgrids
     for (let i = 0; i < 9; i++) {
         let s = new Set();
-        // Determine the starting row and column of the 3x3 subgrid
         let startRow = Math.floor(i / 3) * 3;
         let startCol = (i % 3) * 3;
 
@@ -147,7 +82,7 @@ export class SudokoComponent implements OnInit{
             for (let c = startCol; c < startCol + 3; c++) {
                 if (currentBoard[r][c] !== '.') {
                     if (s.has(currentBoard[r][c])) {
-                        return false; // Duplicate value in the subgrid
+                        return false;
                     }
                     s.add(currentBoard[r][c]);
                 }

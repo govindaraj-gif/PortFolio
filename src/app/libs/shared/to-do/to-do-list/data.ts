@@ -21,11 +21,11 @@ export const statuses:Status[] = [
 
 export const data : ToDO[]= [
     {
-        item:'This is example data. plase continue',
+        item:'Need to finish the report within today.',
         statusid:1
     },
     {
-        item:'This is also example data.',
+        item:'Visit Ram home for dinner.',
         statusid:2
     }
 

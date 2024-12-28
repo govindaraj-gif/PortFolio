@@ -18,8 +18,8 @@ export class ToDoListComponent implements OnInit{
   openDialog(data:any) {
     this.dialog.open(ToDoEditComponent,{
       data:data,
-      height:'25%',
-      width:'60%'
+      height:'30%',
+      width:'40%'
     }).afterClosed().subscribe(() => {
       const data = localStorage.getItem(this.key);
       if(data) this.todoList = JSON.parse(data);

@@ -1,3 +1,15 @@
-<h1 class="text-6xl">
-    Pending...
-</h1>
+<ng-container>
+    <div class="">
+        <div *ngIf="!image" class="flex justify-center p-12">
+            <img src="assets/images/h.jpg" alt="image" class="image">
+        </div>
+        <div class="flex justify-center p-12" [ngClass]="{'hidden' : !image }">
+            <canvas #canvas ></canvas>
+        </div>
+        <div class="flex justify-center">
+            <input #input type="file" accept="image/*" (change)="onFileSelected($event)" class="hidden">
+            <mat-icon class="h-9 w-9 cursor-pointer text-[#3b71ca]" (click)="fileInput()" style="height: 50px;width: 50px;font-size: 50px">photo_camera</mat-icon>
+            <button *ngIf="image" mat-raised-button class="" style="height: 43px;margin-left: 125px;color:white;background:#3b71ca;" (click)="savePdf()">Save</button>
+        </div>
+    </div>
+</ng-container>

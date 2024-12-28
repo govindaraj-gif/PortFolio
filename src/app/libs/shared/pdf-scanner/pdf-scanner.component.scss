@@ -1,0 +1,25 @@
+canvas{
+    height: 650px;
+    width: 30%;
+    border-radius: 20px;
+    border: 3px solid rgb(27, 21, 21);
+}
+
+.image{
+    height: 650px;
+    width: 30%;
+    border-radius: 20px;
+    border: 3px solid rgb(27, 21, 21);
+}
+
+@media only screen and (max-width: 600px){
+    .image{
+        height: 600px;
+        width: 100%;
+    }
+
+    canvas{
+        height: 600px;
+        width: 100%;
+    }
+  }
